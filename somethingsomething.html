@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMETHING SOMETHING</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: rgba(189, 132, 232, 0.864);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Dancing Script", cursive;
+            position: relative;
+        }
+        .message {
+            font-size: 48px;
+            font-weight: bold;
+            color: hotpink;
+            text-align: center;
+            white-space: nowrap;
+            animation: floatUp 4s ease-in-out infinite;
+            position: absolute;
+        }
+        
+        /* Floating animation for the text (gentle up and down like a flag) */
+        @keyframes floatUp {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: pink;
+            opacity: 0.8;
+            filter: blur(3px);
+            transform: translate(-50%, -50%) rotate(45deg);
+            animation: floatBubble 3.5s linear forwards;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgb(144, 0, 255);
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+        
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="message">I love you ______ 🩷</div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            setTimeout(() => heart.remove(), 3500); // Remove heart after animation
+        }
+        setInterval(createHeart, 400); // Generate hearts at a faster rate
+    </script>
+</body>
+</html>
